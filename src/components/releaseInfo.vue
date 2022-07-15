@@ -176,9 +176,10 @@ export default {
 h2 {
   font-weight: normal;
   margin-top: 5vw;
-  font-size: 5vw;
+  font-size: 4.5vw;
   width: 66%;
-  height: 11vw;
+
+  padding-bottom: 2vw;
 }
 
 .img-container {
@@ -195,11 +196,11 @@ h2 {
   margin: auto;
 }
 .play-link-container {
-  position: relative;
+  position: absolute;
   width: 24vw;
   height: 10vw;
   float: right;
-  margin-top: -15vw;
+  top: 99vw;
   right: 0;
 }
 
@@ -220,7 +221,7 @@ h2 {
 }
 .infos {
   text-transform: capitalize;
-  margin-top: 10vw;
+  margin-top: 0vw;
 }
 .more-info-container-one {
   position: relative;
@@ -250,7 +251,7 @@ h2 {
 }
 
 h3 {
-  font-size: 3.8vw;
+  font-size: 3.4vw;
   color: black;
   font-weight: normal;
 }
