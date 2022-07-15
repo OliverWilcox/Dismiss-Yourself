@@ -1,26 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="logo-container">
+    <DismissLogo />
+  </div>
+  <Menu />
+  <router-view />
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Menu from "./components/menu.vue";
+import DismissLogo from "./components/DismissLogo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Menu,
+    DismissLogo,
+  },
+};
 </script>
 
+<style></style>
 <style>
+@font-face {
+  font-family: sk-modernist;
+  src: url(./assets/sk-modernist-webfont.woff);
+}
+body {
+  background: rgb(255, 255, 255);
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: sk-modernist;
+  text-transform: uppercase;
+}
+.logo-container {
+  z-index: +5;
+  position: fixed;
 }
 </style>
