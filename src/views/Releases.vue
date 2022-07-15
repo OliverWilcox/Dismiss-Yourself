@@ -90,11 +90,11 @@ h3 {
     margin: auto;
   }
   .release-num {
-    font-size: 0.7vw;
+    font-size: 0.85vw;
   }
   .release-name {
     font-size: 1.5vw;
-    margin-top: -0.1vw;
+    margin-top: -0.2vw;
   }
 }
 </style>
