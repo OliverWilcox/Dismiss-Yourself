@@ -15,7 +15,7 @@ export default {};
 <style>
 .dismiss-logo {
   position: fixed;
-  width: 12vw;
+  width: 10vw;
   height: 16vw;
   cursor: pointer;
 }

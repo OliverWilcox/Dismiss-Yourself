@@ -303,13 +303,14 @@ h3 {
     margin-top: 1.9vw;
     font-size: 1.6vw;
     width: 70%;
-    height: 5vw;
+    padding-bottom: 0.2vw;
   }
   .play-link-container {
     width: 8vw;
     height: 7vw;
     right: 0;
-    margin-top: -6.1vw;
+    position: absolute;
+    top: 33vw;
   }
 
   .play-link {
