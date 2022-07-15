@@ -57,7 +57,7 @@ a {
   position: relative;
   width: 86.5%;
 
-  padding-bottom: 2vw;
+  padding-bottom: 0.5vw;
   margin-left: 4vw;
   top: 15vh;
   text-decoration: none;
@@ -75,7 +75,7 @@ a {
   position: relative;
   font-family: sk-modernist;
   font-size: 5vw;
-  margin-top: -1.2vw;
+  margin-top: -2vw;
   color: black;
 }
 h2,
