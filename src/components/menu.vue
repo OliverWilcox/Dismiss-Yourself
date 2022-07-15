@@ -142,7 +142,7 @@ export default {
   padding-top: 1vw;
   padding-bottom: 1vw;
   background: none;
-  margin-top: 42.5vh;
+  margin-top: 36.5vh;
   margin-left: -7vw;
   transform: translateY(-50%);
 }
