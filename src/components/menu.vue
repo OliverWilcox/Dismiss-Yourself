@@ -13,14 +13,20 @@
     <div class="menu" v-bind:class="{ menuActive: isMenuOn }">
       <div class="menu-nav">
         <router-link to="/">
-          <div class="nav-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="nav-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul class="home-nav" v-bind:class="{ homeActive: isMenuOn }">
               home
             </ul>
           </div>
         </router-link>
         <router-link to="releases">
-          <div class="nav-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="nav-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul
               class="releases-nav"
               v-bind:class="{ releasesActive: isMenuOn }"
@@ -30,7 +36,10 @@
           </div>
         </router-link>
         <router-link to="/contact">
-          <div class="nav-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="nav-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul
               class="releases-nav"
               v-bind:class="{ releasesActive: isMenuOn }"
@@ -40,7 +49,10 @@
           </div>
         </router-link>
         <a href="https://dismiss.store/">
-          <div class="nav-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="nav-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul class="shop-nav" v-bind:class="{ shopActive: isMenuOn }">
               shop
             </ul>
@@ -49,7 +61,10 @@
       </div>
       <div class="socials-container">
         <a href="https://dismissyourself.bandcamp.com/">
-          <div class="social-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="social-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul class="social" v-bind:class="{ oneActive: isMenuOn }">
               bandcamp
             </ul>
@@ -58,14 +73,20 @@
         <a
           href="https://twitter.com/dismissyxurself?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
         >
-          <div class="social-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="social-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul class="social" v-bind:class="{ twoActive: isMenuOn }">
               twitter
             </ul>
           </div>
         </a>
         <a href="https://www.instagram.com/dismissyourselfx/?hl=en">
-          <div class="social-item-container" v-on:click="isMenuOn = false">
+          <div
+            class="social-item-container"
+            v-on:click="(isMenuOn = false), (isBlurActive = false)"
+          >
             <ul class="social" v-bind:class="{ threeActive: isMenuOn }">
               instagram
             </ul>
@@ -331,6 +352,7 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
+    z-index: +10;
     transition: 1s;
   }
   .blurActive {
@@ -368,7 +390,7 @@ export default {
   .releases-nav,
   .shop-nav,
   .forum-nav {
-    font-size: 4vw;
+    font-size: 3.5vw;
     margin-left: -70vw;
     transition: 0.5s;
   }
