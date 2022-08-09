@@ -9,8 +9,8 @@
     <h3 class="bottom-info info-one-bottom">
       <div class="info-fill"></div>
       SHOP :
-      <span class="underline"
-        ><a href="https://dismiss.store/">DISMISS.STORE</a></span
+      <a href="https://dismiss.store/"
+        ><span class="underline">DISMISS.STORE</span></a
       >
     </h3>
   </div>
@@ -21,10 +21,14 @@ export default {};
 </script>
 
 <style>
+a {
+  cursor: pointer;
+}
 .info-bottom {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: +10;
 }
 
 .bottom-info {

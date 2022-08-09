@@ -352,11 +352,12 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: +10;
+    z-index: -2;
     transition: 1s;
   }
   .blurActive {
     opacity: 0.05;
+    z-index: +10;
   }
 
   .menu {
