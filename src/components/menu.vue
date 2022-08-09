@@ -29,7 +29,7 @@
             </ul>
           </div>
         </router-link>
-        <router-link to="contact">
+        <router-link to="/contact">
           <div class="nav-item-container" v-on:click="isMenuOn = false">
             <ul
               class="releases-nav"

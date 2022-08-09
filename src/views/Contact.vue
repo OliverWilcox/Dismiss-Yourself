@@ -17,10 +17,16 @@
       </a>
     </p>
   </div>
+  <ParticleBackground />
 </template>
 
 <script>
-export default {};
+import ParticleBackground from "../components/ParticleBackground.vue";
+export default {
+  components: {
+    ParticleBackground,
+  },
+};
 </script>
 
 <style scoped>
