@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .contact {
-  text-transform: capitalize;
+  text-transform: none;
   margin-left: 2vw;
 }
 .underline {

@@ -37,7 +37,11 @@ export default {
     {
       name: 'releaseDate',
       title: 'Release Date',
-      type: 'string',
+      type: 'date',
+      value: 'date',
+      options: {
+        dateFormat: 'MM-DD-YYYY',
+      }
     },
     {
       name: 'releaseType',

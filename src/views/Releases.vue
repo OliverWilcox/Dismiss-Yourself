@@ -30,7 +30,7 @@ let URL = `https://xu51naeq.api.sanity.io/v2021-10-21/data/query/production?quer
 
 // fetch the content
 fetch(URL).then((res) => res.json());
-const queryPost = `*[_type == "post"] | order(releaseNum desc) {
+const queryPost = `*[_type == "post"] | order(releaseDate desc) {
   _id,
  releaseNum,
   artistName,
