@@ -28,6 +28,12 @@ const routes = [
     name: "releaseInfo",
     component: () => import("../components/releaseInfo.vue"),
   
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: () => import("../views/Contact.vue"),
+  
   }
 
 ]

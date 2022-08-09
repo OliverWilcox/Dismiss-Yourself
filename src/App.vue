@@ -1,18 +1,22 @@
 <template>
+  <Menu />
+  <ReleaseBar />
   <div class="logo-container">
     <DismissLogo />
   </div>
-  <Menu />
+
   <router-view />
 </template>
 <script>
 import Menu from "./components/menu.vue";
+import ReleaseBar from "./components/ReleaseBar.vue";
 import DismissLogo from "./components/DismissLogo.vue";
 
 export default {
   name: "App",
   components: {
     Menu,
+    ReleaseBar,
     DismissLogo,
   },
 };
@@ -32,7 +36,7 @@ body {
   text-transform: uppercase;
 }
 .logo-container {
-  z-index: +5;
+  z-index: +40;
   position: fixed;
 }
 </style>

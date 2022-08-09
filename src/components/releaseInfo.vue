@@ -1,6 +1,7 @@
 <template>
   <div class="all-info-container">
-    <div class="loading" v-if="loading">Loading...</div>
+    <div class="release-transition-three"></div>
+    <div class="loading" v-if="loading"></div>
 
     <div v-if="error" class="error">
       {{ error }}
@@ -42,42 +43,54 @@
       </div>
       <div class="infos">
         <div class="more-info-container-one">
-          <div class="release-info-container info-one">
+          <div class="release-info-container info-one" v-if="post.releaseDate">
             <h3 class="release-info date">Release Date</h3>
             <h3 class="release-info date info-cms">{{ post.releaseDate }}</h3>
           </div>
-          <div class="release-info-container info-two">
+          <div class="release-info-container info-two" v-if="post.releaseType">
             <h3 class="release-info type">Release Type</h3>
-            <h3 class="release-info date info-cms">{{ post.releaseType }}</h3>
+            <h3 class="release-info date info-cms">
+              {{ post.releaseType }}
+            </h3>
           </div>
-          <div class="release-info-container info-three">
+          <div class="release-info-container info-three" v-if="post.anr">
             <h3 class="release-info anr">A&R</h3>
             <h3 class="release-info date info-cms">
               {{ post.anr }}
             </h3>
           </div>
-        </div>
-        <div class="more-info-container-one">
-          <div class="release-info-container info-one">
+
+          <div class="release-info-container info-one" v-if="post.genre">
             <h3 class="release-info date">Genre</h3>
             <h3 class="release-info date info-cms">{{ post.genre }}</h3>
           </div>
-          <div class="release-info-container info-two">
+          <div class="release-info-container info-two" v-if="post.releaseNum">
             <h3 class="release-info type">Release Number</h3>
             <h3 class="release-info date info-cms">{{ post.releaseNum }}</h3>
           </div>
         </div>
-        <h3 class="producers">Producers</h3>
-        <div class="more-info-container-one container-three">
-          <div class="release-info-container info-one">
+        <h3
+          class="producers"
+          v-if="post.mixing || post.mastering || post.engineering"
+        >
+          Producers
+        </h3>
+        <div
+          class="more-info-container-one container-three"
+          v-if="post.mixing || post.mastering || post.engineering"
+        >
+          <div class="release-info-container info-one" v-if="post.mastering">
             <h3 class="release-info date">mastering</h3>
             <h3 class="release-info date info-cms">{{ post.mastering }}</h3>
           </div>
-          <div class="release-info-container info-two">
+          <div class="release-info-container info-two" v-if="post.mixing">
             <h3 class="release-info type">mixing</h3>
             <h3 class="release-info date info-cms">{{ post.mixing }}</h3>
           </div>
-          <div class="release-info-container info-three">
+          <div
+            class="release-info-container info-three"
+            v-if="post.engineering"
+          >
             <h3 class="release-info anr">engineering</h3>
             <h3 class="release-info date info-cms">{{ post.engineering }}</h3>
           </div>
@@ -96,6 +109,7 @@
         <h3 class="bottom-info info-two-bottom">C DISMISS YOURSELF 2022</h3>
       </div>
     </div>
+    <ParticleBackground />
   </div>
 </template>
 
@@ -129,9 +143,10 @@ const query = `*[slug.current == $slug] {
 }[0]
 `;
 
+import ParticleBackground from "../components/ParticleBackground.vue";
 export default {
   name: "SinglePost",
-  components: { SanityBlocks },
+  components: { SanityBlocks, ParticleBackground },
   data() {
     return {
       loading: true,
@@ -172,6 +187,19 @@ export default {
   margin: auto;
   top: 18vw;
   text-overflow: ellipsis;
+  z-index: +10;
+  opacity: 0;
+  animation: contAnim 1s forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes contAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 h2 {
   font-weight: normal;
@@ -184,15 +212,16 @@ h2 {
 
 .img-container {
   position: relative;
-  width: 90.5vw;
-  height: 94vw;
+  width: 90vw;
+  height: 90vw;
   overflow: hidden;
-  background-color: lightgrey;
+  margin: auto;
+  background-color: none;
 }
 .album-image {
   position: relative;
   display: block;
-  width: 105%;
+  width: 100%;
   margin: auto;
 }
 .play-link-container {
@@ -200,8 +229,37 @@ h2 {
   width: 24vw;
   height: 10vw;
   float: right;
-  top: 99vw;
+  top: 95.5vw;
   right: 0;
+}
+
+.release-transition-three {
+  position: fixed;
+  top: 0;
+  left: 0%;
+  background: white;
+  height: 100%;
+  width: 100vw;
+  overflow: hidden;
+
+  z-index: +20;
+  animation: scale-up-ver-bottom 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)
+    forwards;
+}
+
+@keyframes scale-up-ver-bottom {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+  }
 }
 
 .play-link {
@@ -220,34 +278,43 @@ h2 {
   right: 0;
 }
 .infos {
-  text-transform: capitalize;
-  margin-top: 0vw;
 }
-.more-info-container-one {
-  position: relative;
-  margin-top: 0vw;
-  width: 100%;
-  height: 15vw;
-}
-.release-info-container {
-  position: absolute;
 
-  width: 32vw;
-  height: 15vw;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.infos > div {
+  width: 100%;
+  height: 2vw;
+  position: relative;
+  margin-top: 10vw;
+}
+
+.more-info-container-one {
+  text-transform: capitalize;
+  top: -4vw;
+  width: 100vw;
+  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  padding-bottom: 15vw;
+
+  position: relative;
+}
+
+.more-info-container-one > div {
+  width: 30vw;
+  background: none;
+  padding-bottom: 2vw;
+  margin-top: -5vw;
+  position: relative;
+  background: none;
+  margin-left: none;
+}
+
+.release-info-container {
 }
 .info-one {
-  left: 0;
 }
 .info-two {
-  left: 51%;
-  transform: translateX(-50%);
 }
 .info-three {
-  right: 0;
-  width: 24vw;
 }
 
 h3 {
@@ -255,22 +322,24 @@ h3 {
   color: black;
   font-weight: normal;
 }
+
 .info-cms {
   margin-top: -2.4vw;
   color: rgb(134, 134, 134);
 }
 
 .producers {
-  margin-top: 6.5vw;
+  margin-top: 7vw;
 }
 
 .container-three {
   margin-top: -3vw;
+  clear: both;
 }
 
 .info-bottom {
   position: relative;
-  margin-top: 15vw;
+  margin-top: 30vw;
   padding-bottom: 10vw;
 }
 
@@ -280,7 +349,6 @@ h3 {
   width: 60vw;
   font-size: 3.2vw;
   text-align: right;
-  top: -10.3vw;
 }
 
 .go-back {
@@ -289,6 +357,9 @@ h3 {
   text-decoration: underline;
   cursor: pointer;
 }
+.container-three {
+  padding-bottom: 0vw;
+}
 @media (min-aspect-ratio: 200/200) {
   .content {
     top: 4vw;
@@ -296,7 +367,7 @@ h3 {
   }
   .img-container {
     width: 30vw;
-    height: 31vw;
+    height: 30vw;
     margin: auto;
   }
   h2 {
@@ -310,7 +381,7 @@ h3 {
     height: 7vw;
     right: 0;
     position: absolute;
-    top: 33vw;
+    top: 32vw;
   }
 
   .play-link {
@@ -335,27 +406,24 @@ h3 {
     margin-top: 0vw;
     width: 100%;
     height: 4vw;
+    top: -5.5vw;
   }
-  .release-info-container {
-    width: 5vw;
-    height: 4vw;
-    width: 8vw;
+
+  .more-info-container-one > div {
+    width: 10vw;
+    background: none;
+    padding-bottom: 2vw;
+    margin-top: -3.5vw;
+    position: relative;
+    background: none;
+    margin-left: none;
   }
-  .info-one {
-    left: 0;
-  }
-  .info-two {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .info-three {
-    right: 0;
-  }
+
   .info-cms {
     margin-top: -0.9vw;
   }
   .producers {
-    margin-top: 4vw;
+    margin-top: -16.5vw;
   }
 
   h3 {
@@ -366,7 +434,7 @@ h3 {
 
   .info-bottom {
     position: relative;
-    margin-top: 5vw;
+    margin-top: 0vw;
     padding-bottom: 10vw;
   }
 

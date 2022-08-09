@@ -1,12 +1,18 @@
 <template>
   <div class="info-bottom">
+    <router-link to="contact">
+      <h3 class="bottom-info info-three-bottom">
+        <div class="info-fill"></div>
+        <span class="underline">CONTACT US</span>
+      </h3>
+    </router-link>
     <h3 class="bottom-info info-one-bottom">
+      <div class="info-fill"></div>
       SHOP :
       <span class="underline"
         ><a href="https://dismiss.store/">DISMISS.STORE</a></span
       >
     </h3>
-    <h3 class="bottom-info info-two-bottom">C DISMISS YOURSELF 2022</h3>
   </div>
 </template>
 
@@ -29,6 +35,28 @@ export default {};
   top: -1vw;
   margin-left: 3vw;
   text-align: left;
+}
+
+.info-fill {
+  position: absolute;
+  height: 4vw;
+  width: 45vw;
+  top: 0%;
+
+  left: 0vw;
+  z-index: +1;
+  background: rgb(255, 255, 255);
+  animation: info-fill 1s forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes info-fill {
+  0% {
+    height: 5vw;
+  }
+  100% {
+    height: 0vw;
+  }
 }
 
 .info-two-bottom {

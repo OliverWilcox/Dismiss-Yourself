@@ -90,7 +90,40 @@ export default {
       title: "Body",
       type: "blockContent",
     },
+    
   ],
+  
+
+ 
+      
+  orderings: [
+    {
+      title: 'Release Num New',
+      name: 'releaseDateDesc',
+      by: [
+        {field: 'releaseNum', direction: 'desc'}
+      ]
+    },
+    
+    {
+      title: 'Release Num, Old',
+      name: 'releaseDateAsc',
+      by: [
+        {field: 'releaseNum', direction: 'asc'}
+      ]
+    },
+    {
+      title: 'Popularity',
+      name: 'popularityDesc',
+      by: [
+        {field: 'popularity', direction: 'desc'}
+      ],
+     
+    }
+  ]
+    
+   
+  
 
 
 }

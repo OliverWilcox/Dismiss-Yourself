@@ -1,6 +1,11 @@
 <template>
+  <div class="bg-blur" v-bind:class="{ blurActive: isBlurActive }"></div>
   <div class="nav" v-bind:class="{ navActive: isMenuOn }">
-    <div class="menu-bar" v-on:click="isMenuOn = !isMenuOn">
+    <div
+      class="menu-bar"
+      v-on:click="(isMenuOn = !isMenuOn), (isBlurActive = !isBlurActive)"
+    >
+      <div class="menu-fill"></div>
       <h1 class="open" v-bind:class="{ menuBarActive: isMenuOn }">menu</h1>
       <h1 class="close" v-bind:class="{ closeActive: isMenuOn }">close</h1>
     </div>
@@ -8,14 +13,14 @@
     <div class="menu" v-bind:class="{ menuActive: isMenuOn }">
       <div class="menu-nav">
         <router-link to="/">
-          <div class="nav-item-container">
+          <div class="nav-item-container" v-on:click="isMenuOn = false">
             <ul class="home-nav" v-bind:class="{ homeActive: isMenuOn }">
               home
             </ul>
           </div>
         </router-link>
         <router-link to="releases">
-          <div class="nav-item-container">
+          <div class="nav-item-container" v-on:click="isMenuOn = false">
             <ul
               class="releases-nav"
               v-bind:class="{ releasesActive: isMenuOn }"
@@ -24,8 +29,18 @@
             </ul>
           </div>
         </router-link>
+        <router-link to="contact">
+          <div class="nav-item-container" v-on:click="isMenuOn = false">
+            <ul
+              class="releases-nav"
+              v-bind:class="{ releasesActive: isMenuOn }"
+            >
+              contact
+            </ul>
+          </div>
+        </router-link>
         <a href="https://dismiss.store/">
-          <div class="nav-item-container">
+          <div class="nav-item-container" v-on:click="isMenuOn = false">
             <ul class="shop-nav" v-bind:class="{ shopActive: isMenuOn }">
               shop
             </ul>
@@ -34,7 +49,7 @@
       </div>
       <div class="socials-container">
         <a href="https://dismissyourself.bandcamp.com/">
-          <div class="social-item-container">
+          <div class="social-item-container" v-on:click="isMenuOn = false">
             <ul class="social" v-bind:class="{ oneActive: isMenuOn }">
               bandcamp
             </ul>
@@ -43,14 +58,14 @@
         <a
           href="https://twitter.com/dismissyxurself?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
         >
-          <div class="social-item-container">
+          <div class="social-item-container" v-on:click="isMenuOn = false">
             <ul class="social" v-bind:class="{ twoActive: isMenuOn }">
               twitter
             </ul>
           </div>
         </a>
         <a href="https://www.instagram.com/dismissyourselfx/?hl=en">
-          <div class="social-item-container">
+          <div class="social-item-container" v-on:click="isMenuOn = false">
             <ul class="social" v-bind:class="{ threeActive: isMenuOn }">
               instagram
             </ul>
@@ -66,6 +81,7 @@ export default {
   name: "Menu",
   data: () => ({
     isMenuOn: false,
+    isBlurActive: false,
   }),
 };
 </script>
@@ -74,7 +90,7 @@ export default {
 <style scoped>
 .nav {
   position: fixed;
-  z-index: +5;
+  z-index: +40;
   transition: 1s;
 }
 .navActive {
@@ -82,8 +98,8 @@ export default {
 
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.111);
 }
+
 .menu-bar {
   right: 3vw;
   overflow: hidden;
@@ -143,7 +159,7 @@ export default {
   padding-bottom: 1vw;
   background: none;
   margin-top: 36.5vh;
-  margin-left: -7vw;
+  margin-left: 0vw;
   transform: translateY(-50%);
 }
 .nav-item-container {
@@ -151,13 +167,14 @@ export default {
   height: 13vw;
   background: none;
   margin-top: -11vw;
+  margin-left: -20px;
 }
 
 .home-nav,
 .releases-nav,
 .shop-nav,
 .forum-nav {
-  font-size: 13vw;
+  font-size: 12vw;
   margin-left: -70vw;
   transition: 0.5s;
 }
@@ -190,13 +207,13 @@ export default {
 .socials-container {
   position: absolute;
   bottom: 0.5vh;
-  margin-left: -7vw;
+  margin-left: -20px;
 }
 
 .social-item-container {
   position: relative;
   margin-left: -70vw;
-  margin-top: -3vw;
+  margin-top: -15px;
 }
 
 .social {
@@ -219,6 +236,25 @@ export default {
   margin-left: 70vw;
   opacity: 1;
   transition-delay: 0.375s;
+}
+
+.menu-fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  animation: fill 1s forwards;
+  animation-delay: 0.6s;
+  z-index: +2;
+}
+
+@keyframes fill {
+  0% {
+    width: 120%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 
 @keyframes scale-up-ver-bottom {
@@ -285,6 +321,21 @@ export default {
   .closeActive {
     margin-left: -3.5vw;
   }
+}
+@media (min-aspect-ratio: 200/240) {
+  .bg-blur {
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: 1s;
+  }
+  .blurActive {
+    opacity: 0.05;
+  }
 
   .menu {
     position: fixed;
@@ -310,7 +361,7 @@ export default {
     height: 4vw;
 
     margin-top: -3.5vw;
-    margin-left: 10vw;
+    margin-left: 8vw;
   }
 
   .home-nav,
@@ -353,13 +404,13 @@ export default {
   .socials-container {
     position: absolute;
     bottom: 5vh;
-    margin-left: -7vw;
+    margin-left: -9vw;
   }
 
   .social-item-container {
     position: relative;
     margin-left: -70vw;
-    margin-top: -0.8vw;
+    margin-top: -10px;
   }
 
   .social {
